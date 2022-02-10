@@ -28,6 +28,10 @@
 .phase-3{
 	/* styles for body element */
 }
+.phase-3 #time{
+	/* style for displayed time can be changed in this way */
+	color: #FF3333;
+}
 
 
 /* classes for states */

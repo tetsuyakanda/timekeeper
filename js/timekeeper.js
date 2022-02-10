@@ -62,6 +62,10 @@ $(function () {
 	}
 
 	function updateHash() {
+		var infostr = '🛎 ' + $('#time1').val()
+		+ ' 🛎🛎 '  + $('#time2').val()
+		+ ' 🛎🛎🛎 ' + $('#time3').val();
+		$('#info').html(infostr);
 		var hashstr = '#t1=' + $('#time1').val()
 			+ '&t2=' + $('#time2').val()
 			+ '&t3=' + $('#time3').val()
@@ -106,6 +110,7 @@ $(function () {
 			return (className.match(/\bstate-\S+/g) || []).join(' ');
 		});
 		$('body').addClass('state-' + s);
+
 	};
 
 	function changePhaseClass(s) {
@@ -113,14 +118,15 @@ $(function () {
 			return (className.match(/\bphase-\S+/g) || []).join(' ');
 		});
 		$('body').addClass('phase-' + s);
+		$('#state').html('🛎'.repeat(s));
 	};
 
 	function standby() {
 		$('.nav li').removeClass('active');
 		$('.nav li#standby').addClass('active');
-		$('#state').html('STANDBY');
 		changeStateClass('standby');
 		changePhaseClass('0');
+		$('#state').html('STANDBY');
 		time_inner = (new Date('2011/1/1 00:00:00'));
 		show_time();
 	}
@@ -147,6 +153,7 @@ $(function () {
 
 	changeStateClass('standby');
 	changePhaseClass('0');
+	$('#state').html('STANDBY');
 	var start_time = new Date();
 	var last_time;
 
@@ -179,15 +186,15 @@ $(function () {
 	function resize_display() {
 		var height = $('body').height();
 		var width = $('body').width();
-		var theight = Math.min(height * 3 / 5, width * 1.95 / 5);
+		var theight = Math.min(height * 2.5 / 5, width * 1.95 / 5);
 		$('#time').css('top', (height - theight) / 2 * 1.1);
 		$('#time').css('font-size', theight + 'px');
 		$('#time').css('line-height', theight + 'px');
-		var sheight = theight / 6;
+		var sheight = theight / 5;
 		$('#state').css('top', height / 2 - theight / 2 - sheight / 2);
 		$('#state').css('font-size', sheight + 'px');
 		$('#state').css('line-height', sheight + 'px');
-		var iheight = sheight;
+		var iheight = sheight * 0.8;
 		$('#info').css('top', height / 2 + theight / 2);
 		$('#info').css('font-size', iheight + 'px');
 		$('#info').css('line-height', iheight + 'px');
